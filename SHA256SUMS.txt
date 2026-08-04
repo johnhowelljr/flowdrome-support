@@ -1,4 +1,4 @@
-9845255c47b699302f7071e95fdad1c04ed0e2f4aaed08b20fb14bfc824e30df  flowdrome-nucleus_2.1.0-rc.1.tar.gz
-fcb352973043eb938d304f7ee6f8c15146356ef7cabc7c5172804b7c83bcc37c  flowdrome-host-agent_2.1.0-rc.1.tar.gz
-bd7f37a76b5fde9cee588cff8c076d8036cc8ca1e1495d77cbf634f339de6584  flowdrome-nucleus-lxc_2.1.0-rc.1_amd64.tar.gz
-35a14d4a10bb742035ba7f1eaa3f74717362eb1269d6a169e1aab5a51dd4c3af  flowdrome-host-lxc_2.1.0-rc.1_amd64.tar.gz
+51d8ca97317098d9cffc3d7056eff0e8bbea61107799fdaae83fd58217df5178  flowdrome-nucleus_2.1.0.tar.gz
+1083fe4b177b78b8559fb8c23d7f6d00e4f99063b31e71143a3c2771931f47b2  flowdrome-host-agent_2.1.0.tar.gz
+efa2e3d90415c3f32c4ec52c9fc35dcb757c903f39b9c63298a068b5b96e9e9e  flowdrome-nucleus-lxc_2.1.0_amd64.tar.gz
+1fbf400c96d8795d61d8eefd96e4ef3b11d43938112cf2b174aa71a938dc9ba4  flowdrome-host-lxc_2.1.0_amd64.tar.gz
