@@ -70,8 +70,8 @@ sha256sum -c SHA256SUMS.txt
 ## Versions
 
 Releases are numbered **Mark X Mod Y**, written **Mk X Mod Y**, and the version appears in the
-browser tab of every Flowdrome screen. Artifacts are tagged with the dotted equivalent:
-Mk 2 Mod 1 → `2.1.0`, and a release candidate → `2.1.0-rc.1`.
+browser tab of every Flowdrome screen. Artifacts are tagged with the dotted equivalent —
+Mk 2 Mod 1 → `2.1.0`.
 
 A Mod **is** the release — there are no release candidates and no pre-release tags. If it is
 published here, it is released.
