@@ -26,7 +26,7 @@ Ports: **Nucleus 4800**, its **built-in host 4820**, a standalone **Host 4801**.
 ### Docker
 
 ```bash
-docker load -i flowdrome-nucleus_<version>.tar.gz
+docker load -i flowdrome-nucleus-docker_<version>_amd64.tar.gz
 docker run -d --name flowdrome-nucleus --restart unless-stopped \
   -p 4800:4800 -p 4820:4820 -v nucleus-data:/data flowdrome/nucleus:<version>
 ```
@@ -41,7 +41,7 @@ container; leave it off if you only ever call them from within.
 To add another machine:
 
 ```bash
-docker load -i flowdrome-host-agent_<version>.tar.gz
+docker load -i flowdrome-host-docker_<version>_amd64.tar.gz
 docker run -d --name flowdrome-host --restart unless-stopped \
   -p 4801:4801 -v host-data:/data flowdrome/host-agent:<version>
 ```
@@ -90,7 +90,7 @@ sha256sum -c SHA256SUMS.txt
 
 Releases are numbered **Mark X Mod Y**, written **Mk X Mod Y**, and the version appears in the
 browser tab of every Flowdrome screen. Artifacts are tagged with the dotted equivalent —
-Mk 2 Mod 1 → `2.1.0`.
+Mk 2 Mod 2 → `2.2.0`.
 
 A Mod **is** the release — there are no release candidates and no pre-release tags. If it is
 published here, it is released.
@@ -101,7 +101,7 @@ Data lives in the volume (`/data`), never in the image, so an upgrade is: pull o
 image, stop the old container, start the new one against the **same** volume.
 
 ```bash
-docker load -i flowdrome-nucleus_<new-version>.tar.gz
+docker load -i flowdrome-nucleus-docker_<new-version>_amd64.tar.gz
 docker rm -f flowdrome-nucleus
 docker run -d --name flowdrome-nucleus --restart unless-stopped \
   -p 4800:4800 -v nucleus-data:/data flowdrome/nucleus:<new-version>
