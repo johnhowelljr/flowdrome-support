@@ -90,24 +90,49 @@ sha256sum -c SHA256SUMS.txt
 
 Releases are numbered **Mark X Mod Y**, written **Mk X Mod Y**, and the version appears in the
 browser tab of every Flowdrome screen. Artifacts are tagged with the dotted equivalent —
-Mk 2 Mod 2 → `2.2.0`.
+Mk 2 Mod 5 → `2.5.0`.
 
 A Mod **is** the release — there are no release candidates and no pre-release tags. If it is
 published here, it is released.
 
 ## Upgrading
 
-Data lives in the volume (`/data`), never in the image, so an upgrade is: pull or load the new
-image, stop the old container, start the new one against the **same** volume.
+Your data is never in the image or the template — it lives in `/data`, and both routes below leave
+it alone. Upgrade the Nucleus first, then any separate hosts.
+
+### Proxmox CT — in place
+
+The CT template is also the upgrade artifact, and `flowdrome-upgrade` is already installed inside
+the container. It replaces `/app`, keeps the previous install until the service is confirmed
+running, then updates itself.
+
+```bash
+scp flowdrome-nucleus-lxc_<new-version>_amd64.tar.gz root@<ct-address>:/root/
+ssh root@<ct-address> flowdrome-upgrade /root/flowdrome-nucleus-lxc_<new-version>_amd64.tar.gz
+```
+
+Or from the Proxmox host, without SSH into the container:
+
+```bash
+pct push <vmid> flowdrome-nucleus-lxc_<new-version>_amd64.tar.gz /root/upgrade.tar.gz
+pct exec <vmid> -- flowdrome-upgrade /root/upgrade.tar.gz
+```
+
+It accepts a URL as well. There is no need to recreate the container. Confirm what you are running
+from the browser tab title — it reads `Mk X Mod Y`.
+
+### Docker
+
+Load the new image, stop the old container, start the new one against the **same** volume.
 
 ```bash
 docker load -i flowdrome-nucleus-docker_<new-version>_amd64.tar.gz
 docker rm -f flowdrome-nucleus
 docker run -d --name flowdrome-nucleus --restart unless-stopped \
-  -p 4800:4800 -v nucleus-data:/data flowdrome/nucleus:<new-version>
+  -p 4800:4800 -p 4820:4820 -v nucleus-data:/data flowdrome/nucleus:<new-version>
 ```
 
-Upgrade the Nucleus first, then the hosts. Take a copy of the volume before a major move.
+Take a copy of the volume before a major move.
 
 ## Reporting a problem
 
